@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KMS Checker</title>
+</head>
+<body>
+    <h1>KMS Server Status</h1>
+    <table border="1">
+        <tr>
+            <th>Server</th>
+            <th>Product Key</th>
+            <th>KMS Host Name</th>
+            <th>KMS Status</th>
+        </tr>
+        {% for result in results %}
+            <tr>
+                <td>{{ result["Server"] }}</td>
+                {% if result["Status"].get("Error") %}
+                    <td colspan="3" style="color: red;">{{ result["Status"]["Error"] }}</td>
+                {% else %}
+                    <td>{{ result["Status"]["Product Key"] }}</td>
+                    <td>{{ result["Status"]["KMS Host Name"] }}</td>
+                    <td>{{ result["Status"]["KMS Status"] }}</td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
